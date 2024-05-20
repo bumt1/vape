@@ -1,1 +1,1 @@
-{"KickUsers":{},"KickReason":"","Notify":true,"Time":30,"Header":"150 Subs for Next Update - discord.gg/pQvRAwuK8e","Enabled":false}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/NewMainScript.lua", true))()
