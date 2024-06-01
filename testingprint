@@ -17,3 +17,51 @@ run(function()
 		end
 	end)         
 end)
+
+run(function()
+	CustomModule = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+		Name = "CustomHealthBar",
+		Function = function(callback)
+			if callback then 
+				spawn(function()
+					pcall(function()
+						local tweenservice = game:GetService("TweenService")
+						local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+						local hotbar
+						local hotbar1
+						local hotbarHealthbarContainer
+						local healthbarProgressWrapper
+						local healthbar
+						local speed = 1
+						local redStart = 125
+						local greenStart = 38
+						local blueStart = 205
+						local redEnd = 191
+						local greenEnd = 148
+						local blueEnd = 228
+						repeat
+							if not healthbar or not healthbar.Parent then
+								hotbar = playerGui:WaitForChild("hotbar")
+								hotbar1 = hotbar:WaitForChild("1")
+								hotbarHealthbarContainer = hotbar1:WaitForChild("HotbarHealthbarContainer")
+								healthbarProgressWrapper = hotbarHealthbarContainer:WaitForChild("HealthbarProgressWrapper")
+								healthbar = healthbarProgressWrapper:WaitForChild("1")
+							end
+
+							local t = math.abs(math.sin(tick()))
+							local red = redStart + (redEnd - redStart) * t
+							local green = greenStart + (greenEnd - greenStart) * t
+							local blue = blueStart + (blueEnd - blueStart) * t
+							local color = Color3.new(red/255, green/255, blue/255)
+
+							local tween = tweenservice:Create(healthbar, TweenInfo.new(speed), {BackgroundColor3 = color})
+							tween:Play()
+							wait(speed)
+						until not CustomModule.Enabled
+					end) 
+				end)
+			end
+		end
+	})
+end)
+
