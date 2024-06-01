@@ -9118,5 +9118,3 @@ task.spawn(function()
 		AutoLeave.ToggleButton(false)
 	end
 end)
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/bumt1/vape/main/testingprint.lua"))()
