@@ -285,7 +285,7 @@ do
 	end
 end
 
-GuiLibrary.SelfDestructEvent.Event:Connect(function()
+
 	vapeInjected = false
 	for i, v in pairs(vapeConnections) do
 		if v.Disconnect then pcall(function() v:Disconnect() end) continue end
