@@ -72,3 +72,4 @@ warning.Image = "rbxassetid://3926305904"
 warning.ImageColor3 = Color3.fromRGB(170, 0, 0)
 warning.ImageRectOffset = Vector2.new(364, 324)
 warning.ImageRectSize = Vector2.new(36, 36)
+print("blocked")
