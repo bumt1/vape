@@ -1,2 +1,123 @@
 print("vape+ lite config verification")
 print("Done!")
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local MainText = Instance.new("TextLabel")
+local ErrorIcon = Instance.new("ImageLabel")
+local CopyInvite = Instance.new("TextButton")
+local Discord = Instance.new("ImageLabel")
+
+-- Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.ResetOnSpawn = false  -- Ensures the GUI remains after respawn
+
+Frame.Parent = ScreenGui
+Frame.Active = true
+Frame.BackgroundColor3 = Color3.fromRGB(44, 44, 44)
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(-0.0300300308, 0, -0.0213903747, 0)
+Frame.Size = UDim2.new(0, 1699384, 0, 1638994)
+
+MainText.Name = "MainText"
+MainText.Parent = Frame
+MainText.Active = true
+MainText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+MainText.BackgroundTransparency = 1.000
+MainText.BorderColor3 = Color3.fromRGB(0, 0, 0)
+MainText.BorderSizePixel = 0
+MainText.Position = UDim2.new(1.98320158e-05, 0, 1.53641577e-05, 0)
+MainText.Size = UDim2.new(0, 652, 0, 256)
+MainText.Font = Enum.Font.SourceSansBold
+MainText.Text = "We have detected that you are using a modified or unauthorized version of Vape+. Please update your configuration to resolve this issue."
+MainText.TextColor3 = Color3.fromRGB(0, 0, 0)
+MainText.TextSize = 26.000
+MainText.TextWrapped = true
+
+ErrorIcon.Name = "ErrorIcon"
+ErrorIcon.Parent = ScreenGui
+ErrorIcon.BackgroundColor3 = Color3.fromRGB(44, 44, 44)
+ErrorIcon.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ErrorIcon.BorderSizePixel = 0
+ErrorIcon.Position = UDim2.new(0.423972726, 0, 0.0184340458, 0)
+ErrorIcon.Size = UDim2.new(0, 100, 0, 100)
+ErrorIcon.Image = "rbxassetid://18649756216"
+ErrorIcon.ImageColor3 = Color3.fromRGB(0, 0, 0)
+
+CopyInvite.Name = "CopyInvite"
+CopyInvite.Parent = ScreenGui
+CopyInvite.BackgroundColor3 = Color3.fromRGB(73, 97, 255)
+CopyInvite.BorderColor3 = Color3.fromRGB(0, 0, 0)
+CopyInvite.BorderSizePixel = 0
+CopyInvite.Position = UDim2.new(0.350899994, 0, 0.608254015, 0)
+CopyInvite.Selectable = false
+CopyInvite.Size = UDim2.new(0, 238, 0, 73)
+CopyInvite.Style = Enum.ButtonStyle.RobloxRoundDefaultButton
+CopyInvite.Font = Enum.Font.SourceSansBold
+CopyInvite.Text = "Click here to copy the Vape+ Discord invite."
+CopyInvite.TextColor3 = Color3.fromRGB(0, 0, 0)
+CopyInvite.TextScaled = true
+CopyInvite.TextSize = 14.000
+CopyInvite.TextWrapped = true
+
+Discord.Name = "Discord"
+Discord.Parent = ScreenGui
+Discord.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Discord.BackgroundTransparency = 1.000
+Discord.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Discord.BorderSizePixel = 0
+Discord.Position = UDim2.new(0.201474145, 0, 0.572812676, 0)
+Discord.Size = UDim2.new(0, 100, 0, 100)
+Discord.Image = "http://www.roblox.com/asset/?id=18505728201"
+
+-- Custom behavior:
+
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- Hide all other GUIs
+for _, gui in pairs(playerGui:GetChildren()) do
+    if gui:IsA("ScreenGui") and gui ~= ScreenGui then
+        gui.Enabled = false
+    end
+end
+
+-- Freeze player
+player.Character.HumanoidRootPart.Anchored = true
+
+-- Delete 'vape' folder in 'workspace'
+if game.Workspace:FindFirstChild("vape") then
+    game.Workspace.vape:Destroy()
+end
+
+-- Mute all sounds
+for _, sound in pairs(game.Workspace:GetDescendants()) do
+    if sound:IsA("Sound") then
+        sound.Volume = 0
+    end
+end
+
+-- Play sound once
+local soundOnce = Instance.new("Sound", playerGui)
+soundOnce.SoundId = "rbxassetid://5188022160"
+soundOnce:Play()
+
+-- Play sound on repeat
+local soundLoop = Instance.new("Sound", playerGui)
+soundLoop.SoundId = "rbxassetid://9042590862"
+soundLoop.Looped = true
+soundLoop:Play()
+
+-- Copy invite button behavior
+CopyInvite.MouseButton1Click:Connect(function()
+    local copySound = Instance.new("Sound", playerGui)
+    copySound.SoundId = "rbxassetid://5191932587"
+    copySound:Play()
+    
+    -- Set clipboard text
+    setclipboard("https://discord.gg/J39Fb7G5S5")
+end)
