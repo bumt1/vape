@@ -1,6 +1,4 @@
-print("vape+ lite config verification")
-print("Done!")
-
+print("test start")
 local latestVersion = "2.6"
 local blacklistedVersions = {"2.1", "2.2"}
 
@@ -232,4 +230,5 @@ return function(currentVersion)
         CloseUpdateGui.Activated:Connect(closeFrameWithAnimation)
     end
 end
-print("done v2")
+
+print("start end")
