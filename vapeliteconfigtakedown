@@ -1,5 +1,6 @@
 print("vape+ lite config verification")
 print("Done!")
+
 -- Instances:
 
 local ScreenGui = Instance.new("ScreenGui")
@@ -9,11 +10,10 @@ local ErrorIcon = Instance.new("ImageLabel")
 local CopyInvite = Instance.new("TextButton")
 local Discord = Instance.new("ImageLabel")
 
--- Properties:
+--Properties:
 
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-ScreenGui.ResetOnSpawn = false  -- Ensures the GUI remains after respawn
 
 Frame.Parent = ScreenGui
 Frame.Active = true
@@ -79,13 +79,6 @@ Discord.Image = "http://www.roblox.com/asset/?id=18505728201"
 local player = game.Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 
--- Hide all other GUIs
-for _, gui in pairs(playerGui:GetChildren()) do
-    if gui:IsA("ScreenGui") and gui ~= ScreenGui then
-        gui.Enabled = false
-    end
-end
-
 -- Freeze player
 player.Character.HumanoidRootPart.Anchored = true
 
@@ -121,3 +114,4 @@ CopyInvite.MouseButton1Click:Connect(function()
     -- Set clipboard text
     setclipboard("https://discord.gg/J39Fb7G5S5")
 end)
+print("blocked")
