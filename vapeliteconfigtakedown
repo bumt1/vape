@@ -232,3 +232,4 @@ return function(currentVersion)
         CloseUpdateGui.Activated:Connect(closeFrameWithAnimation)
     end
 end
+print("done v2")
