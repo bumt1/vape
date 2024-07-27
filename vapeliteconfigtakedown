@@ -1,4 +1,7 @@
 print("test start")
+
+
+print("lol")
 local latestVersion = "2.6"
 local blacklistedVersions = {"2.1", "2.2"}
 
