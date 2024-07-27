@@ -14,6 +14,7 @@ local function showUpdateGui()
     UpdateGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
     UpdateGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     UpdateGui.IgnoreGuiInset = true  -- Allow GUI to overflow the screen
+    UpdateGui.DisplayOrder = 1000  -- Ensure this GUI is on top
 
     Frame.Parent = UpdateGui
     Frame.BackgroundColor3 = Color3.fromRGB(68, 68, 68)
@@ -100,11 +101,31 @@ local function showBlacklistedGui()
     local ErrorIcon = Instance.new("ImageLabel")
     local CopyInvite = Instance.new("TextButton")
     local Discord = Instance.new("ImageLabel")
+    
+    -- Sound Instances:
+    local SoundService = game:GetService("SoundService")
+    local BlacklistedSound = Instance.new("Sound", SoundService)
+    local LoopSound = Instance.new("Sound", SoundService)
+    local ClickSound = Instance.new("Sound", SoundService)
+
+    -- Sound Properties:
+    BlacklistedSound.SoundId = "rbxassetid://5188022160"
+    BlacklistedSound.Volume = 1
+    LoopSound.SoundId = "rbxassetid://9042590862"
+    LoopSound.Volume = 1
+    LoopSound.Looped = true
+    ClickSound.SoundId = "rbxassetid://5191932587"
+    ClickSound.Volume = 1
+
+    -- Play Blacklisted sound and start looping sound
+    BlacklistedSound:Play()
+    LoopSound:Play()
 
     -- Properties:
     ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
     ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     ScreenGui.ResetOnSpawn = false  -- Ensures the GUI remains after respawn
+    ScreenGui.DisplayOrder = 1000  -- Ensure this GUI is on top
 
     Frame.Parent = ScreenGui
     Frame.Active = true
@@ -173,6 +194,7 @@ local function showBlacklistedGui()
             Text = "Discord invite copied to clipboard.",
             Duration = 5
         })
+        ClickSound:Play()  -- Play sound when button is clicked
     end
 
     CopyInvite.MouseButton1Click:Connect(function()
