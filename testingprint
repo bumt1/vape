@@ -1,5 +1,4 @@
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/bumt1/vape/main/6872274481source.lua"))()
 run(function()
 	InfiniteJump = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
 		Name = "InfiniteJump",
