@@ -1,0 +1,26 @@
+run(function()
+    local ProximityPromptReach
+
+    local function setAllPromptRanges(range)
+        for _, prompt in pairs(workspace:GetDescendants()) do
+            if prompt:IsA("ProximityPrompt") then
+                prompt.MaxActivationDistance = range
+            end
+        end
+    end
+
+    ProximityPromptReach = vape.Categories.Utility:CreateModule({
+        Name = "ProximityPromptReach",
+        Function = function(callback)
+            if callback then
+                spawn(function()
+                    while ProximityPromptReach.Enabled do
+                        setAllPromptRanges(20)
+                        task.wait(2)
+                    end
+                end)
+            end
+        end,
+        Tooltip = "Sets all proximity prompts interaction range to 20."
+    })
+end)
